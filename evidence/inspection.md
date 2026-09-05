@@ -62,7 +62,7 @@ Action Clients:
 
 ```
 
-**Interpretation:**
+**Interpretation:** [What does this tell you?]
 `ros2 node list` appears to list all nodes that exist in the environment. The implication of the use of `\` implies that nodes can be nested within one another. Though this is largely unconfirmed by the output given the current "flat" environment.
 
 `ros2 node info /talker` appears to output the interfaces of a node grouped by their type. This is largely implied by the constant reappearance of `rcl_interfaces` across almost all of the information that exists there in similar form as by the `/talker/describe_parameters` listed above.
@@ -80,11 +80,20 @@ Finally, there also exists empty Service Clients, Action Servers, and Action Cli
 **Commands:**
 
 ```bash
-
+ros2 topic list -t
+ros2 topic info /chatter
 ```
 
 ```text
+halifulis@Parcae:~$ ros2 topic list -t
+/chatter [std_msgs/msg/String]
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/rosout [rcl_interfaces/msg/Log]
 
+halifulis@Parcae:~$ ros2 topic info /chatter
+Type: std_msgs/msg/String
+Publisher count: 1
+Subscription count: 1
 ```
 
 **Interpretation:** [Identify the publisher, subscriber, topic, and message structure.]
