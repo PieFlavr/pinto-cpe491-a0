@@ -20,30 +20,71 @@ On both terminals, it also outputs a preceding informational message to the abov
 
 See the following image for better clarification.
 
-![alt text](evidence/part_1.png)
+![alt text](images/part_1.png)
 
 ## Part 2: Standard demo
 
 ### Running nodes
 
-**Command:** `[command]`
+NOTE: I am interpreting "record short, relevant excerpts" as NOT the entire terminal, but the specific exact output of each command, cutting out and/or compressing details not discussed in the Interpretation section.
 
-```text
-[relevant output]
+NOTE #2: Additionally, I'm going to interpret each topic section following thereafter to roughly match multiple commands as per the implication of the assignment.
+
+NOTE #3: I also converted the `text` format to `bash` for commands, so it looks nice :D
+**Commands:**
+NOTE: this was modified to include both "node" commands intentionally.
+
+```bash
+ros2 node list
+ros2 node info /talker
 ```
 
-**Interpretation:** [What does this tell you?]
+```text
+halifulis@Parcae:~$ ros2 node list
+/listener
+/talker
+
+halifulis@Parcae:~$ ros2 node info/talker
+Subscribers:
+
+Publishers:
+/chatter: std_msgs/msg/String
+... 2 more lines ...
+Service Servers:
+/talker/describe_parameters: rcl_interfaces/srv/DescribeParameters
+... 6 more lines ...
+
+Service Clients:
+
+Action Servers:
+
+Action Clients:
+
+```
+
+**Interpretation:**
+`ros2 node list` appears to list all nodes that exist in the environment. The implication of the use of `\` implies that nodes can be nested within one another. Though this is largely unconfirmed by the output given the current "flat" environment.
+
+`ros2 node info /talker` appears to output the interfaces of a node grouped by their type. This is largely implied by the constant reappearance of `rcl_interfaces` across almost all of the information that exists there in similar form as by the `/talker/describe_parameters` listed above.
+
+Additionally, `/chatter` in the `Publishers` section seems to be the Topic that Talker is publishing too. This is corroborated by the fact `/chatter` appears in the Subscriber interfaces of Listener in a separate command not listed above. 
+
+The interfaces `/parameter_events` and `/rosout` seem to exist in the Publisher section of both Talker and Listener. Their names and shared existence implies this is something that exists in all nodes that can be subscribed to, though the only thing that can be definitively concluded is that they exist in both.
+
+Furthermore, `/talker/describe_parameters` along with a similar copy in Listeners with the appropriate `/listener` prefix to `/describe_parameters` exists. Similar parameters with the `rcl_interfaces` across the `:`, which might mean its being published to some common standard internal output? Considering `/rosout` exists across all nodes as a Publisher, this implies that this is the Topic its being outputted to by standard of some rudimentary operation and/or function in ROS2 (rcl = ros command log?).
+
+Finally, there also exists empty Service Clients, Action Servers, and Action Clients sections. Subscribers is also empty in Talker specifically, though this might just mean Talker is not listening/subscribing to any particular Topic. Regardless, the three totally empty sections could just imply that neither Talker nor Listener are themselves a Service that provides anything to a client but use a Service themselves from some other part of the overall architecture given the non-emptiness of Service Servers. Additionally, no "Actions" are being performed or received either as denoted by its appropriately empty sections.
 
 ### Connections and message type
 
 **Commands:**
 
-```text
-[commands]
+```bash
+
 ```
 
 ```text
-[relevant output]
+
 ```
 
 **Interpretation:** [Identify the publisher, subscriber, topic, and message structure.]
@@ -75,7 +116,7 @@ See the following image for better clarification.
 **Interpretation:** [Explain how this supports the required node names, topic, type, publisher, and subscriber.]
 
 ### Message and rate
-
+zz
 **Commands and relevant output:**
 
 ```text
