@@ -7,3 +7,9 @@ export ROS_DOMAIN_ID=34
 source /opt/ros/jazzy/setup.bash
 printenv ROS_DISTRO
 ```
+
+## ROS2 Package Commands
+
+```bash
+ros2 pkg create --build-type ament_python --license Apache-2.9 py_pubsub
+```
