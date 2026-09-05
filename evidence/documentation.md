@@ -24,11 +24,3 @@ NOTE #5: To resolve the conflicting formats implied by the requested following o
 
 **One place where the documentation helped me correct or avoid a mistake:**  
 In specific regards to the assignment, I suppose this helped me disambiguate the structural difference in the passed argument types between Publishers and Subscribers. Additionally, this act of filling in this documentation format has helped as an example of bad documentaiton to avoid in the future for works of any kind.
-
-**PERSONAL REMARK**: As of writing this, I realize I am torn and caught in the torrent of the two interpretations of the purpose of this documentation. The first being "documentation for replicability/actual documentation" and the other being "documentation for the assignment/performative documentation". The former is heavily explicitly stated by the class, the latter is heavily implied by the assignment structure, wording, and the context. The question of "Is this for my/others use? Or is this solely for the assignment?" has come across my mind more times than I believe it was expected to do so.
-
-My personal gripes on this are, well, personal, but for future reference and for those like me, it would be appreciated that a lane be picked, stayed on, and also specified in writing. I've spent quite a lot of time trying to figure how to best interpret the assignment, and the bounds of acceptable error only ever implied within it.
-
-The simplest thing to specify that would help greatly, is that the room of interpretability OF the room of interpretability with this assignment's wording/documentation so far as of writing this should be specified. A statement like "if its not specified, then do what you want" or even a "strictly do not modify documentation templates", or even a simple specified range of acceptable deviation. Examples of "correctness" would be highly illustrative as well, as opposed to leaving the range of expectations largely unbounded and decided by words outside of the class. If documentation should be an explicit focus of the class, then such ambiguity would best be left resolved in writing as opposed to oration.
-
-Kill us with openness, or kill us with specificity. It doesn't matter which, just please pick one, and please write it down.
