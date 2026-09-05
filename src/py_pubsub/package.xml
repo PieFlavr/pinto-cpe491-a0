@@ -3,8 +3,8 @@
 <package format="3">
   <name>py_pubsub</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="94877667+PieFlavr@users.noreply.github.com">halifulis</maintainer>
+  <description>This package is for A0 of CPE491, intended to be a minimal deviation from the example publisher and subscribers provided. </description>
+  <maintainer email="lucasadpinto@gmail.com">Lucas</maintainer>
   <license>Apache-2.9</license>
 
   <test_depend>ament_copyright</test_depend>
