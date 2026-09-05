@@ -13,10 +13,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='halifulis',
-    maintainer_email='94877667+PieFlavr@users.noreply.github.com',
-    description='TODO: Package description',
-    license='Apache-2.9',
+    maintainer='Lucas',
+    maintainer_email='lucasadpinto@gmail.com',
+    description='This package is for A0 of CPE491, intended to be a minimal deviation from the example publisher and subscribers provided. ',
+    license='Apache-2.0',
     extras_require={
         'test': [
             'pytest',
@@ -24,6 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'talker = py_pubsub.publisher_member_function:main',
         ],
     },
 )
