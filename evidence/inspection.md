@@ -34,7 +34,7 @@ NOTE #3: I also converted the `text` format to `bash` for commands, so it looks 
 
 NOTE #4: I am also assuming the intention is for a hands-on experience, and presumably this means some implicit degree of not looking stuff up, which I will do my best NOT to.
 
-NOTE #5: With regards to the use of "..." in the logs, they are specifically to hide mass outputs of lines, and are NOT actual outputs of the code. 
+NOTE #5: With regards to the use of "..." in the logs, they are specifically to hide mass outputs of lines, and are NOT actual outputs of the code.
 
 **Commands:**
 NOTE: this was modified to include both "node" commands intentionally.
@@ -150,8 +150,61 @@ The "Hello World" message being outputted by Talker appears to be going at exact
 
 **Commands and relevant output:**
 
-```text
-[commands and output]
+```bash
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node list
+/status_monitor
+/status_publisher
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node info /status_publisher
+/status_publisher
+  Subscribers:
+
+  Publishers:
+    /lab0/status: std_msgs/msg/String
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /status_publisher/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /status_publisher/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /status_publisher/get_parameters: rcl_interfaces/srv/GetParameters
+    /status_publisher/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /status_publisher/list_parameters: rcl_interfaces/srv/ListParameters
+    /status_publisher/set_parameters: rcl_interfaces/srv/SetParameters
+    /status_publisher/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node info /status_monitor
+/status_monitor
+  Subscribers:
+    /lab0/status: std_msgs/msg/String
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /status_monitor/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /status_monitor/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /status_monitor/get_parameters: rcl_interfaces/srv/GetParameters
+    /status_monitor/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /status_monitor/list_parameters: rcl_interfaces/srv/ListParameters
+    /status_monitor/set_parameters: rcl_interfaces/srv/SetParameters
+    /status_monitor/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+  
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic list -t
+/lab0/status [std_msgs/msg/String]
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/rosout [rcl_interfaces/msg/Log]
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic info /lab0/status
+Type: std_msgs/msg/String
+Publisher count: 1
+Subscription count: 1
 ```
 
 **Interpretation:** [Explain how this supports the required node names, topic, type, publisher, and subscriber.]
@@ -160,8 +213,24 @@ The "Hello World" message being outputted by Talker appears to be going at exact
 
 **Commands and relevant output:**
 
-```text
-[commands and output]
+```bash
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic echo /lab0/status --once
+data: 'System Ready: 6879'
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic hz /lab0/status
+average rate: 4.001
+        min: 0.250s max: 0.250s std dev: 0.00009s window: 6
+average rate: 4.000
+        min: 0.250s max: 0.250s std dev: 0.00009s window: 10
+average rate: 4.000
+        min: 0.250s max: 0.250s std dev: 0.00012s window: 15
+average rate: 4.000
+        min: 0.250s max: 0.250s std dev: 0.00011s window: 20
+... ??? more lines ...
+average rate: 4.000
+        min: 0.249s max: 0.251s std dev: 0.00012s window: 268
+average rate: 4.000
+        min: 0.249s max: 0.251s std dev: 0.00012s window: 273
+^Chalifulis@Parcae:~/pinto-cpe491-a0$ ^C
 ```
 
 **Interpretation:** [Explain how this supports the required message content and 4 Hz rate.]
