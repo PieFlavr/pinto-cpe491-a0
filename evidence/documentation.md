@@ -10,6 +10,8 @@ NOTE #3: ADDITIONAL to the above, for multi-line fragments, I will be using `\n`
 
 NOTE #4: As it is not specified, the following are additionally based on the unmodified imported source files mentioned in Part 3.
 
+NOTE #5: To resolve the conflicting formats implied by the requested following of the official documentation tutorial and the subsequent `README.md` repository format, I will create symlinks/softlinks to ensure the grading program works effectively the same regardless of exact repository code format.
+
 | Code element | File and line or short fragment | What this element does |
 |---|---|---|
 | Import the message type | `from std_msgs.msg import String` | This specifically pertains to a `String`, however more generally data types from `std_msgs`. Theoretically, so long as the exact class/interface imported is derivative of the message generic/abstract, it should also work. Either way, this lets us use the `String` message type |
