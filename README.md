@@ -219,7 +219,7 @@ These checks inspect files and source code; they cannot prove that your live ROS
 
 ## Submission checklist
 
-- [ ] The repository is pushed to GitHub.
+- [X] The repository is pushed to GitHub.
 - [ ] I ran `gh student submit`, and the latest automated checks pass or I have explained a remaining failure.
 - [ ] All four Python files run directly using `./filename.py`.
 - [ ] All three files in `evidence/` are complete.
