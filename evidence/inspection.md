@@ -5,10 +5,22 @@ Replace every bracketed prompt with your own observation. Keep output excerpts s
 ## Part 1: First observation
 
 **What appears to be happening?**  
-[Your answer]
+`ros2 run demo_nodes_py talker` seems to output a "Hello World" every second, with the count of how many messages it has sent so far being put next to it.
+
+`ros2 run demo_nodes_py listener` seems to listen and copies, and outputs the message the Talker is publishing.
+
+Notably, it seems the actual Message the Talker is publishing is specifically the Hello World message (*see the observation for more detail*). This is because the overlapping message aside from the informational block is simply the "Hello World: X" message for both Listener and Talker.
 
 **What did you observe that supports this?**  
-[Your answer]
+On the Talker terminal, it outputs `Publishing: "Hello World: X"`, where X is an always ascending number corresponding to the number of messages so far (i.e. the count published messages so far).
+
+On the Listener terminal, it outputs `I heard: [Hello World: X]`, wherein the latest message with X corresponds to the latest Talker's X.
+
+On both terminals, it also outputs a preceding informational message to the above formatted as `[INFO] [NNNNNNNNNN.MMMMMMMMM] [type]`, wherein the sequence of Ns is the same for both, the sequence of Ms is roughly close but always different, and `type` being replaced by `talker` and `listener` respectively.
+
+See the following image for better clarification.
+
+![alt text](evidence/part_1.png)
 
 ## Part 2: Standard demo
 
