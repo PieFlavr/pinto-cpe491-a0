@@ -31,6 +31,8 @@ NOTE: I am interpreting "record short, relevant excerpts" as NOT the entire term
 NOTE #2: Additionally, I'm going to interpret each topic section following thereafter to roughly match multiple commands as per the implication of the assignment.
 
 NOTE #3: I also converted the `text` format to `bash` for commands, so it looks nice :D
+
+NOTE #4: I am also assuming the intention is for a hands-on experience, and presumably this means some implicit degree of not looking stuff up, which I will do my best NOT to. 
 **Commands:**
 NOTE: this was modified to include both "node" commands intentionally.
 
@@ -82,6 +84,7 @@ Finally, there also exists empty Service Clients, Action Servers, and Action Cli
 ```bash
 ros2 topic list -t
 ros2 topic info /chatter
+ros2 interface show std_msgs/msg/String
 ```
 
 ```text
@@ -94,10 +97,20 @@ halifulis@Parcae:~$ ros2 topic info /chatter
 Type: std_msgs/msg/String
 Publisher count: 1
 Subscription count: 1
+
+halifulis@Parcae:~$ ros2 interface show std_msgs/msg/String
+# This was originally provided as an example message.
+# It is deprecated as of Foxy
+# It is recommended to create your own semantically meaningful message.
+# However if you would like to continue using this please use the equivalent in example_msgs.
+
+string data
 ```
 
 **Interpretation:** [Identify the publisher, subscriber, topic, and message structure.]
+Assuming the above is asking to identify the SPECIFIC relevant Publisher, Subscriber, and Topics pertaining to the output and the specific environment produced by the assignment so far... AND assuming "Publisher" and "Subscriber" refer to the nodes containing them...
 
+There are Three topics: Chatter, Parameter_Events, and Rosout. All nodes so far are appear to be Publishers (or contain them?) to Parameter_Events and Rosout. Talker specifically appears to be a Publisher to Chatter, while Listener appears to be a Subscriber to Chatter. Additionally, it seems messages can be structured rather freely considering the variety across the three topics (String, ParameterEvent, Lod). With that in mind and given the application of ROS2 (sending rich data for robots to use), `string data` seems to correspond to `data_type name`, and messages are structured therefore as a collection of accessible fields (though this might be a stretch). In this particular case, the messages being sent across the current existing nodes (Talker and Listener) are probably just straight Strings.
 
 ### Message and rate
 
