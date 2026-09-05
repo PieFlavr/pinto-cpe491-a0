@@ -32,7 +32,10 @@ NOTE #2: Additionally, I'm going to interpret each topic section following there
 
 NOTE #3: I also converted the `text` format to `bash` for commands, so it looks nice :D
 
-NOTE #4: I am also assuming the intention is for a hands-on experience, and presumably this means some implicit degree of not looking stuff up, which I will do my best NOT to. 
+NOTE #4: I am also assuming the intention is for a hands-on experience, and presumably this means some implicit degree of not looking stuff up, which I will do my best NOT to.
+
+NOTE #5: With regards to the use of "..." in the logs, they are specifically to hide mass outputs of lines, and are NOT actual outputs of the code. 
+
 **Commands:**
 NOTE: this was modified to include both "node" commands intentionally.
 
@@ -110,21 +113,36 @@ string data
 **Interpretation:** [Identify the publisher, subscriber, topic, and message structure.]
 Assuming the above is asking to identify the SPECIFIC relevant Publisher, Subscriber, and Topics pertaining to the output and the specific environment produced by the assignment so far... AND assuming "Publisher" and "Subscriber" refer to the nodes containing them...
 
-There are Three topics: Chatter, Parameter_Events, and Rosout. All nodes so far are appear to be Publishers (or contain them?) to Parameter_Events and Rosout. Talker specifically appears to be a Publisher to Chatter, while Listener appears to be a Subscriber to Chatter. Additionally, it seems messages can be structured rather freely considering the variety across the three topics (String, ParameterEvent, Lod). With that in mind and given the application of ROS2 (sending rich data for robots to use), `string data` seems to correspond to `data_type name`, and messages are structured therefore as a collection of accessible fields (though this might be a stretch). In this particular case, the messages being sent across the current existing nodes (Talker and Listener) are probably just straight Strings.
+There are Three topics: Chatter, Parameter_Events, and Rosout. All nodes so far are appear to be Publishers (or contain them?) to Parameter_Events and Rosout. Talker specifically appears to be a Publisher to Chatter, while Listener appears to be a Subscriber to Chatter. Additionally, it seems messages can be structured rather freely considering the variety across the three topics (String, ParameterEvent, Lod). With that in mind and given the application of ROS2 (sending rich data for robots to use), `string data` seems to correspond to `data_type name`, and messages are structured therefore as a collection of accessible fields (though this might be a stretch). In this particular case, the messages being sent across the current existing nodes (Talker and Listener) are probably just straight Strings. However, implication of the structure of messages as a collection fields seems to be corroborated by the following commands in the next section with its display of `data`.
 
 ### Message and rate
 
 **Commands:**
 
 ```text
-[commands]
+ros2 topic echo /chatter --cone
+ros2 topic hz /chatter
 ```
 
 ```text
-[relevant output]
+halifulis@Parcae:~$ ros2 topic echo /chatter --once
+data: 'Hello World: 18992'
+---
+halifulis@Parcae:~$ ros2 topic hz /chatter
+average rate: 1.000
+	min: 1.000s max: 1.000s std dev: 0.00009s window: 3
+average rate: 1.000
+	min: 1.000s max: 1.000s std dev: 0.00014s window: 4
+average rate: 1.000
+	min: 1.000s max: 1.000s std dev: 0.00015s window: 5
+... 20 lines ...
+average rate: 1.000
+	min: 0.998s max: 1.002s std dev: 0.00051s window: 26
+^Chalifulis@Parcae:~$ 
 ```
 
 **Interpretation:** [Describe one message and the approximate rate.]
+The "Hello World" message being outputted by Talker appears to be going at exactly once a second or 1HZ. The third `std dev` value appears to be the standard deviation of the overall statistic, which is ridiculously small. Window seems to be the "window" or number of messages used to calculate said statistics.
 
 ## Part 4: Your status system
 
@@ -138,8 +156,8 @@ There are Three topics: Chatter, Parameter_Events, and Rosout. All nodes so far 
 
 **Interpretation:** [Explain how this supports the required node names, topic, type, publisher, and subscriber.]
 
-### Message and rate
-zz
+### Message and Rate
+
 **Commands and relevant output:**
 
 ```text
