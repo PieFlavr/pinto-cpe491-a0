@@ -67,7 +67,7 @@ Action Clients:
 
 `ros2 node info /talker` appears to output the interfaces of a node grouped by their type. This is largely implied by the constant reappearance of `rcl_interfaces` across almost all of the information that exists there in similar form as by the `/talker/describe_parameters` listed above.
 
-Additionally, `/chatter` in the `Publishers` section seems to be the Topic that Talker is publishing too. This is corroborated by the fact `/chatter` appears in the Subscriber interfaces of Listener in a separate command not listed above. 
+Additionally, `/chatter` in the `Publishers` section seems to be the Topic that Talker is publishing too. This is corroborated by the fact `/chatter` appears in the Subscriber interfaces of Listener in a separate command not listed above. Similarly, the other lines like `/parameter_events` and `/rosout` also appear to be Topics themselves for the same reasoning.
 
 The interfaces `/parameter_events` and `/rosout` seem to exist in the Publisher section of both Talker and Listener. Their names and shared existence implies this is something that exists in all nodes that can be subscribed to, though the only thing that can be definitively concluded is that they exist in both.
 
@@ -97,6 +97,7 @@ Subscription count: 1
 ```
 
 **Interpretation:** [Identify the publisher, subscriber, topic, and message structure.]
+
 
 ### Message and rate
 
