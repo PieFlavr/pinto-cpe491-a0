@@ -244,15 +244,3 @@ average rate: 4.000
 ```
 
 **Interpretation:** [Explain how this supports the node names, /lab0/count topic, Int32 type, publisher/subscriber connection, increasing values, and 1 Hz rate.]
-
-## CPE 691 extension
-
-Delete this section if you are enrolled in CPE 491.
-
-```text
-[output of ros2 topic info /lab0/status --verbose]
-```
-
-```text
-[output of ros2 topic info /lab0/count --verbose]
-```
