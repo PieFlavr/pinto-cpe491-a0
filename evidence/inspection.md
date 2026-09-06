@@ -231,6 +231,7 @@ NOTE: It seems there is no current practical difference on whether or not the to
 ```bash
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic echo /lab0/status --once
 data: 'System ready: 3257'
+
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic hz /lab0/status
 average rate: 4.001
         min: 0.250s max: 0.250s std dev: 0.00009s window: 7
@@ -244,11 +245,14 @@ average rate: 4.000
 average rate: 4.000
         min: 0.249s max: 0.251s std dev: 0.00012s window: 125
 ^Chalifulis@Parcae:~/pinto-cpe491-a0$ ^C
+
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic echo /lab0/status --once
+data: 'System ready: 8326'
 ```
 
 **Interpretation:** [Explain how this supports the required message content and 4 Hz rate.]
 
-The use of `ros2 topic echo /lab0/status --once` echos a single message put out to the `/lab0/status` topic, which follows the requested message of `System ready` and the output of some increasing count, with the overall format of `System ready: X` where `X` is the increasing integer count. Additionally, `ros2 topic hz /lab0/status` was used to measure the frequency the message was being sent at, which follows the requested 4hz message frequency. Though there appeared to be a degree of variability at the beginning with `4.001`, but ultimately averages out to be close be `4.000` after leaving it to measure for a large enough window of messages.
+The use of `ros2 topic echo /lab0/status --once` echos a single message put out to the `/lab0/status` topic, which follows the requested message of `System ready` and the output of some increasing count, with the overall format of `System ready: X` where `X` is the increasing integer count. Additionally, `ros2 topic hz /lab0/status` was used to measure the frequency the message was being sent at, which follows the requested 4hz message frequency. Though there appeared to be a degree of variability at the beginning with `4.001`, but ultimately averages out to be close be `4.000` after leaving it to measure for a large enough window of messages. Performing the echo command again after a long time later, the count has noticeably increased, therefore evidentiary to the requested increasing count.
 
 ## Part 6: Your count system
 
@@ -329,6 +333,10 @@ average rate: 1.000
 ```
 
 **Interpretation:** [Explain how this supports the node names, /lab0/count topic, Int32 type, publisher/subscriber connection, increasing values, and 1 Hz rate.]
+
+`ros2 node list` confirms the two nodes exist under the requested names, `/count_publisher` and `/count_monitor`. The `ros2 node info` output for each then mirrors the same Publisher/Subscriber split seen in Part 4. The `count_publisher` has `/lab0/count` in its Publishers list with an otherwise empty Subscribers list. The `count_monitor` has the same topic under Subcribers with no Publishers aside from the standard `/parameter_events` and `/rosout` pair. `ros2 topic list -t` corroborates this further by listing `/lab0/count` alongside its type, `std_msgs/msg/Int32`, which also matches what appeared in both nodes' info dumps. Therefore the type is consistent across every place it is referenced, similarly as `lab0/status` was in Part 4.
+
+With regards to the message, 
 
 NOTE: Needed to run `chmod +x tests/check_assignment.py` to give it permission to run.
 
