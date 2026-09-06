@@ -12,7 +12,7 @@ class CountMonitor(Node):
         super().__init__('count_monitor')
         self.subscription = self.create_subscription(
             Int32,
-            'lab0/count',
+            '/lab0/count',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning

@@ -12,7 +12,7 @@ class StatusMonitor(Node):
         super().__init__('status_monitor')
         self.subscription = self.create_subscription(
             String,
-            'lab0/status',
+            '/lab0/status',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning

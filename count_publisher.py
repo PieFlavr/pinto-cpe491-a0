@@ -1,1 +1,1 @@
-/src/count_publisher.py
+src/count_publisher.py
