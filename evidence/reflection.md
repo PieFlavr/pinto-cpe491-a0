@@ -36,4 +36,20 @@ If I had to pick just ONE command (*which seems to be the implication here*), I 
 
 *Describe one failure or wrong result, the evidence that helped you locate it, and what you changed.*
 
-Running `check_assignment.py` helped me realized the assignment was asking for `System ready`, not `Systeam Ready`. Additionally, transferring work across Windows and Linux via Git also made me realize symlinks/softlinks were going to run into a multitude of different issues, and in addition to realizing the `README.md` was different in subtle but unfrotunate ways to the assignment on WebCampus, led to me to refactor my repository structure.
+Running `check_assignment.py` helped me realized the assignment was asking for `System ready`, not `Systeam Ready`. Looking further into the code and the output, the latter of which simply detailing the direct error and comparing my current code at the time let me realize the aforementioned mistake. Additionally, transferring work across Windows and Linux via Git also made me realize symlinks/softlinks were going to run into a multitude of different issues, and in addition to realizing the `README.md` was different in subtle but unfrotunate ways to the assignment on WebCampus, led to me to refactor my repository structure. The particular piece of relevant evidence in that regard was the following section of the `README.md` not included in the WebCampus assignment:
+
+```text
+.
+├── status_publisher.py
+├── status_monitor.py
+├── count_publisher.py
+├── count_monitor.py
+├── evidence/
+│   ├── documentation.md
+│   ├── inspection.md
+│   └── reflection.md
+└── tests/
+    └── check_assignment.py
+```
+
+With regards to the technical aspect of the code, the `check_assignment.py` also let me realize I needed the `/` at the start of topic definitions, though for this particular assignment it had no real measurable effect aside from `check_assignment.py`'s recording of it as a failure.
