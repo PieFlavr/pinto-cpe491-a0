@@ -2,7 +2,7 @@
 
 Use the two official ROS 2 Jazzy source files linked in Part 3. Quote only the short line or fragment needed to identify each element.
 
-NOTE: I was unsure if this was inteded to be pertaining to a particular file, or was generic, so treat any FULLY CAPTITALIZED word or set of words as generic "variable" names to substitute for the appropriate purpose/application (*"quote" as specific examples vs. documentation as generic/reproducable*). There are further disambiguated in the `[brief note]` sections provided. For the most part, these are solely used in the situation of multiple specific lines fulfilling the same purpose/"element" (*simplest example is `super().__init__('NODE_NAME')` to illustrate*).
+NOTE: I was unsure if this was inteded to be pertaining to a particular file, or was generic, so treat any FULLY CAPTITALIZED word or set of words as generic "variable" names to substitute for the appropriate purpose/application (*"quote" as specific examples vs. documentation as generic/reproducable*). There are further disambiguated in the `brief note` sections provided. For the most part, these are solely used in the situation of multiple specific lines fulfilling the same purpose/"element" (*simplest example is `super().__init__('NODE_NAME')` to illustrate*).
 
 NOTE #2: Additional to the above, in-code comments will be used as substitute for "specific" documentation, as to avoid the issue of multiple individual independently updatable code bits.
 
