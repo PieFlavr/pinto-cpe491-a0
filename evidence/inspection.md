@@ -230,10 +230,10 @@ NOTE: It seems there is no current practical difference on whether or not the to
 
 ```bash
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic echo /lab0/status --once
-data: 'System Ready: 6879'
+data: 'System ready: 3257'
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic hz /lab0/status
 average rate: 4.001
-        min: 0.250s max: 0.250s std dev: 0.00009s window: 6
+        min: 0.250s max: 0.250s std dev: 0.00009s window: 7
 average rate: 4.000
         min: 0.250s max: 0.250s std dev: 0.00009s window: 10
 average rate: 4.000
@@ -242,15 +242,13 @@ average rate: 4.000
         min: 0.250s max: 0.250s std dev: 0.00011s window: 20
 # ... ??? more lines ...
 average rate: 4.000
-        min: 0.249s max: 0.251s std dev: 0.00012s window: 268
-average rate: 4.000
-        min: 0.249s max: 0.251s std dev: 0.00012s window: 273
+        min: 0.249s max: 0.251s std dev: 0.00012s window: 125
 ^Chalifulis@Parcae:~/pinto-cpe491-a0$ ^C
 ```
 
 **Interpretation:** [Explain how this supports the required message content and 4 Hz rate.]
 
-asd
+The above echos a single message put out to the `/lab0/status` topic, which follows
 
 ## Part 6: Your count system
 
