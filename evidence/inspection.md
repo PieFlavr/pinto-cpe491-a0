@@ -248,7 +248,7 @@ average rate: 4.000
 
 **Interpretation:** [Explain how this supports the required message content and 4 Hz rate.]
 
-The above echos a single message put out to the `/lab0/status` topic, which follows
+The use of `ros2 topic echo /lab0/status --once` echos a single message put out to the `/lab0/status` topic, which follows the requested message of `System ready` and the output of some increasing count, with the overall format of `System ready: X` where `X` is the increasing integer count. Additionally, `ros2 topic hz /lab0/status` was used to measure the frequency the message was being sent at, which follows the requested 4hz message frequency. Though there appeared to be a degree of variability at the beginning with `4.001`, but ultimately averages out to be close be `4.000` after leaving it to measure for a large enough window of messages.
 
 ## Part 6: Your count system
 
