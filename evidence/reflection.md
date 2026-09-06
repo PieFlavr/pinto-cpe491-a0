@@ -2,9 +2,19 @@
 
 ## From Python file to ROS graph
 
-In 150–250 words, explain how the Python class and `main()` function relate to the running process, ROS node, publisher or subscriber, topic, and message visible in the ROS graph.
+In 150–250 words, explain how the Python class and `main()` function relate to the running process, ROS node, publisher or subscriber, topic, and message visible in the ROS graph.*
 
-[Your response]
+The following is written with the assumption this is asking in direct relevance to the content/work covered by the assignment.
+
+The use of a class from Python is used to extend and create subclasses of `rclpy`'s `Node`, of which instantiating it is what creates the ROS node. In that regard, `super().__init__('NODE_NAME')` inside of `__init__` registers said name within the overall ROS graph, letting it be seen in the nodes listed by `ros2 node list`.
+
+Everything else the class sets up in its `__init__()` function such as via `self.create_publisher(...)` or `self.create_subscription(...)` and other additional logic is what wires the node to some specific topic and message type. Presumably this means a Node can have multiple Publishers and Subscribers within it.
+
+The timer or callback defined within the class (*or some other logical condition*) is what produces and/or consumes individual messages in specified topics at runtime. 
+
+From the functions and logic within `main()`, it seems Nodes are treated as ongoing processes whose use of `rclpy`'s functions such as `rclpy.init()`, `rclpy.spin()`, and `rclpy.shutdown()` establish communication/use with the ROS library. `init()` starts the ROS library in relation to the Node, then the rest of the code before `spin()` establish/instantiates the Node itself (*along with additional properties/aspects not already established by `__init__()`*). `rclpy.spin()` keeps the process holding the Node alive and "ticks" it, letting callbacks and similar react to the overall system. Then any code between `spin()` and `shutdown()` would likely be delegated to clean-up and similar shutdown logic, before `shitdown()` itself explicitly performs cleanup of the Node. 
+
+In my testing without using `spin()`, the Node never meaningfully exists (*though it might momentarily*). Presumably you can manually `spin()` the Node some specific number of times? Though this is mostly conjecture as I try to keep strictly to immediately class-relevant topics. 
 
 ## Changing the message contract
 
