@@ -10,7 +10,11 @@ In 150–250 words, explain how the Python class and `main()` function relate to
 
 Compare your status pair with your count pair. What code changed, what stayed the same, and why must the publisher and subscriber agree on both the topic name and message type?
 
-[Your response]
+For the most part, a majority of the changes across the two pairs are almost entirely the naming scheme of things. `CountPublisher`, `CountMonitor`, and similar replaced counterpart `StatusPublisher`, `StatusMonitor`, and etc... The only "real" changes so far that had technical consequences were with regard to the message and its data. The `timer_period` to match the requested frequency specification (*1hz --> 4hz / 1 --> 0.25*). Furthermore the imported data type for the message was also modified, from `String` to `Int32`, and subsequently the message declaration from `msg = String()` to `msg = Int32()`. The most important change was with regards to the message data itself, changing from the `System ready: %d` message to simply just `self.i` being outputted as we were no longer using a string. Consequently the use of `%s` was changed to `%d` in the logger to reflect the new data type. The topic was also changed from `status_publisher` to `count_publisher` in every relevant instance (*including variabel names, for clarity*).
+
+Otherwise, literally everything else about the code stayed structurally and technically the same. No real changes were made to the overall execution flow.
+
+Both Publisher and Subscriber must agree on both the topic name and message type because they otherwise cannot effectively communicate with one another. If the message type is different, on the receiving end data might just be completely unreadable and fail or might be read as some unexpected garbage noise value. If the topic name is different, the message is just lost entirely as neither can reasonably see one another. Its like two people where one calls the wrong phone number, or the other expects a call from the wrong phone number. ROS2's system will just not connect them if they do not agree on topic.
 
 ## A useful inspection command
 
