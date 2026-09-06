@@ -44,7 +44,7 @@ ros2 node list
 ros2 node info /talker
 ```
 
-```text
+```bash
 halifulis@Parcae:~$ ros2 node list
 /listener
 /talker
@@ -54,10 +54,10 @@ Subscribers:
 
 Publishers:
 /chatter: std_msgs/msg/String
-... 2 more lines ...
+# ... 2 more lines ...
 Service Servers:
 /talker/describe_parameters: rcl_interfaces/srv/DescribeParameters
-... 6 more lines ...
+# ... 6 more lines ...
 
 Service Clients:
 
@@ -68,6 +68,7 @@ Action Clients:
 ```
 
 **Interpretation:** [What does this tell you?]
+
 `ros2 node list` appears to list all nodes that exist in the environment. The implication of the use of `\` implies that nodes can be nested within one another. Though this is largely unconfirmed by the output given the current "flat" environment.
 
 `ros2 node info /talker` appears to output the interfaces of a node grouped by their type. This is largely implied by the constant reappearance of `rcl_interfaces` across almost all of the information that exists there in similar form as by the `/talker/describe_parameters` listed above.
@@ -90,7 +91,7 @@ ros2 topic info /chatter
 ros2 interface show std_msgs/msg/String
 ```
 
-```text
+```bash
 halifulis@Parcae:~$ ros2 topic list -t
 /chatter [std_msgs/msg/String]
 /parameter_events [rcl_interfaces/msg/ParameterEvent]
@@ -111,6 +112,7 @@ string data
 ```
 
 **Interpretation:** [Identify the publisher, subscriber, topic, and message structure.]
+
 Assuming the above is asking to identify the SPECIFIC relevant Publisher, Subscriber, and Topics pertaining to the output and the specific environment produced by the assignment so far... AND assuming "Publisher" and "Subscriber" refer to the nodes containing them...
 
 There are Three topics: Chatter, Parameter_Events, and Rosout. All nodes so far are appear to be Publishers (or contain them?) to Parameter_Events and Rosout. Talker specifically appears to be a Publisher to Chatter, while Listener appears to be a Subscriber to Chatter. Additionally, it seems messages can be structured rather freely considering the variety across the three topics (String, ParameterEvent, Lod). With that in mind and given the application of ROS2 (sending rich data for robots to use), `string data` seems to correspond to `data_type name`, and messages are structured therefore as a collection of accessible fields (though this might be a stretch). In this particular case, the messages being sent across the current existing nodes (Talker and Listener) are probably just straight Strings. However, implication of the structure of messages as a collection fields seems to be corroborated by the following commands in the next section with its display of `data`.
@@ -124,7 +126,7 @@ ros2 topic echo /chatter --cone
 ros2 topic hz /chatter
 ```
 
-```text
+```bash
 halifulis@Parcae:~$ ros2 topic echo /chatter --once
 data: 'Hello World: 18992'
 ---
@@ -135,13 +137,14 @@ average rate: 1.000
 	min: 1.000s max: 1.000s std dev: 0.00014s window: 4
 average rate: 1.000
 	min: 1.000s max: 1.000s std dev: 0.00015s window: 5
-... 20 lines ...
+# ... 20 lines ...
 average rate: 1.000
 	min: 0.998s max: 1.002s std dev: 0.00051s window: 26
 ^Chalifulis@Parcae:~$ 
 ```
 
 **Interpretation:** [Describe one message and the approximate rate.]
+
 The "Hello World" message being outputted by Talker appears to be going at exactly once a second or 1HZ. The third `std dev` value appears to be the standard deviation of the overall statistic, which is ridiculously small. Window seems to be the "window" or number of messages used to calculate said statistics.
 
 ## Part 4: Your status system
@@ -150,10 +153,21 @@ The "Hello World" message being outputted by Talker appears to be going at exact
 
 **Commands and relevant output:**
 
+**Commands Used**
+
+```bash
+ros2 node list
+ros2 node info /status_publisher
+ros2 node info /status_monitor
+ros2 topic list -t
+ros2 topic info /lab0/status
+```
+
 ```bash
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node list
 /status_monitor
 /status_publisher
+
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node info /status_publisher
 /status_publisher
   Subscribers:
@@ -185,11 +199,7 @@ halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node info /status_monitor
     /rosout: rcl_interfaces/msg/Log
   Service Servers:
     /status_monitor/describe_parameters: rcl_interfaces/srv/DescribeParameters
-    /status_monitor/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
-    /status_monitor/get_parameters: rcl_interfaces/srv/GetParameters
-    /status_monitor/get_type_description: type_description_interfaces/srv/GetTypeDescription
-    /status_monitor/list_parameters: rcl_interfaces/srv/ListParameters
-    /status_monitor/set_parameters: rcl_interfaces/srv/SetParameters
+    # ... identical lines to Publisher's section ...
     /status_monitor/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
   Service Clients:
 
@@ -201,6 +211,7 @@ halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic list -t
 /lab0/status [std_msgs/msg/String]
 /parameter_events [rcl_interfaces/msg/ParameterEvent]
 /rosout [rcl_interfaces/msg/Log]
+
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic info /lab0/status
 Type: std_msgs/msg/String
 Publisher count: 1
@@ -208,6 +219,10 @@ Subscription count: 1
 ```
 
 **Interpretation:** [Explain how this supports the required node names, topic, type, publisher, and subscriber.]
+
+I was requested to write a `status_publisher.py` and `status_monitor.py` that respectively writes messages and listens to the `/lab0/status` topic. `ros2 node list` lists the current existing nodes, which as in the output above is `/status_monitor` and `/status_publisher`, which follow the requested names. In the above, `ros2 node info` was used for both the `/status_publisher` and `/status_monitor` nodes, which then show the appropriate Publisher and Subscriber relationships. In the Publisher list for `status_publisher`, there exists a Publisher to the topic of `/lab0/status` and an empty Subscriber list. In the info for `status_monitor`, it matches the expected behavior as well, with there being a Subscriber to `/lab0/status` and no Publishers aside from the unavoidable standard ones. Furthermore, upon listing the topics via `ros2 topic list -t`, the topic of `/lab0/status` also shows up to corroborate the topic's existence. In the previous commands as well the topic is listed to use the `std_msgs/msg/String` type across all instances in which it is mentioned. This is further corroborated by the output of `ros2 tpic info /lab0/status`, which also provides evidence to the number of expected Publishers and Subcribers (*one of each*).
+
+NOTE: It seems there is no current practical difference on whether or not the topics start with `/` in code for this particular assignment, though `check_assignment.py` seems to specifically as for the topic to start with `/`. Upon lookup, it appears using `/` specifies the topic to be created in an "absolute path", and without it "relative" (*similar to how its used in file paths*). However as stated before, this makes no difference for this particular assignment. Still, this seems important to keep in mind for the future if in the case we start having more complex namespace schemes.
 
 ### Message and Rate
 
@@ -225,7 +240,7 @@ average rate: 4.000
         min: 0.250s max: 0.250s std dev: 0.00012s window: 15
 average rate: 4.000
         min: 0.250s max: 0.250s std dev: 0.00011s window: 20
-... ??? more lines ...
+# ... ??? more lines ...
 average rate: 4.000
         min: 0.249s max: 0.251s std dev: 0.00012s window: 268
 average rate: 4.000
@@ -235,11 +250,13 @@ average rate: 4.000
 
 **Interpretation:** [Explain how this supports the required message content and 4 Hz rate.]
 
+asd
+
 ## Part 6: Your count system
 
 **Commands and relevant output:**
 
-```text
+```bash
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node list
 /count_monitor
 /count_publisher
@@ -304,7 +321,7 @@ average rate: 1.000
         min: 1.000s max: 1.000s std dev: 0.00007s window: 8
 average rate: 1.000
         min: 1.000s max: 1.000s std dev: 0.00008s window: 10
-... ??? more lines ...
+# ... ??? more lines ...
         min: 1.000s max: 1.001s std dev: 0.00014s window: 48
 average rate: 1.000
         min: 1.000s max: 1.001s std dev: 0.00014s window: 50
