@@ -18,10 +18,6 @@ On the Listener terminal, it outputs `I heard: [Hello World: X]`, wherein the la
 
 On both terminals, it also outputs a preceding informational message to the above formatted as `[INFO] [NNNNNNNNNN.MMMMMMMMM] [type]`, wherein the sequence of Ns is the same for both, the sequence of Ms is roughly close but always different, and `type` being replaced by `talker` and `listener` respectively.
 
-See the following image for better clarification.
-
-![alt text](images/part_1.png)
-
 ## Part 2: Standard demo
 
 ### Running nodes

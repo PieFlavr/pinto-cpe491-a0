@@ -14,7 +14,7 @@ The timer or callback defined within the class (*or some other logical condition
 
 From the functions and logic within `main()`, it seems Nodes are treated as ongoing processes whose use of `rclpy`'s functions such as `rclpy.init()`, `rclpy.spin()`, and `rclpy.shutdown()` establish communication/use with the ROS library. `init()` starts the ROS library in relation to the Node, then the rest of the code before `spin()` establish/instantiates the Node itself (*along with additional properties/aspects not already established by `__init__()`*). `rclpy.spin()` keeps the process holding the Node alive and "ticks" it, letting callbacks and similar react to the overall system. Then any code between `spin()` and `shutdown()` would likely be delegated to clean-up and similar shutdown logic, before `shitdown()` itself explicitly performs cleanup of the Node. 
 
-In my testing without using `spin()`, the Node never meaningfully exists (*though it might momentarily*). Presumably you can manually `spin()` the Node some specific number of times? Though this is mostly conjecture as I try to keep strictly to immediately class-relevant topics. 
+In my testing without using `spin()`, the Node never meaningfully exists (*though it might momentarily*). Presumably you can manually `spin()` the Node some specific number of times? Though this is mostly conjecture as I try to keep strictly to immediately class-relevant topics.
 
 ## Changing the message contract
 
