@@ -119,7 +119,7 @@ There are Three topics: Chatter, Parameter_Events, and Rosout. All nodes so far 
 
 **Commands:**
 
-```text
+```bash
 ros2 topic echo /chatter --cone
 ros2 topic hz /chatter
 ```
@@ -240,7 +240,77 @@ average rate: 4.000
 **Commands and relevant output:**
 
 ```text
-[commands and output]
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node list
+/count_monitor
+/count_publisher
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node info /count_publisher
+/count_publisher
+  Subscribers:
+
+  Publishers:
+    /lab0/count: std_msgs/msg/Int32
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /count_publisher/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /count_publisher/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /count_publisher/get_parameters: rcl_interfaces/srv/GetParameters
+    /count_publisher/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /count_publisher/list_parameters: rcl_interfaces/srv/ListParameters
+    /count_publisher/set_parameters: rcl_interfaces/srv/SetParameters
+    /count_publisher/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 node info /count_monitor
+/count_monitor
+  Subscribers:
+    /lab0/count: std_msgs/msg/Int32
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /count_monitor/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /count_monitor/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /count_monitor/get_parameters: rcl_interfaces/srv/GetParameters
+    /count_monitor/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /count_monitor/list_parameters: rcl_interfaces/srv/ListParameters
+    /count_monitor/set_parameters: rcl_interfaces/srv/SetParameters
+    /count_monitor/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic list -t
+/lab0/count [std_msgs/msg/Int32]
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/rosout [rcl_interfaces/msg/Log]
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic echo /lab0/count --once
+data: 221
+---
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic hz /lab0/count
+average rate: 1.000
+        min: 1.000s max: 1.000s std dev: 0.00000s window: 2
+average rate: 1.000
+        min: 1.000s max: 1.000s std dev: 0.00005s window: 4
+average rate: 1.000
+        min: 1.000s max: 1.000s std dev: 0.00008s window: 6
+average rate: 1.000
+        min: 1.000s max: 1.000s std dev: 0.00007s window: 8
+average rate: 1.000
+        min: 1.000s max: 1.000s std dev: 0.00008s window: 10
+... ??? more lines ...
+        min: 1.000s max: 1.001s std dev: 0.00014s window: 48
+average rate: 1.000
+        min: 1.000s max: 1.001s std dev: 0.00014s window: 50
+average rate: 1.000
+        min: 1.000s max: 1.001s std dev: 0.00014s window: 52
+^Chalifulis@Parcae:~/pinto-cpe491-a0$ 
 ```
 
 **Interpretation:** [Explain how this supports the node names, /lab0/count topic, Int32 type, publisher/subscriber connection, increasing values, and 1 Hz rate.]
