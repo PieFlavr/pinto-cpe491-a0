@@ -130,6 +130,7 @@ ros2 topic hz /chatter
 halifulis@Parcae:~$ ros2 topic echo /chatter --once
 data: 'Hello World: 18992'
 ---
+
 halifulis@Parcae:~$ ros2 topic hz /chatter
 average rate: 1.000
 	min: 1.000s max: 1.000s std dev: 0.00009s window: 3
@@ -145,7 +146,7 @@ average rate: 1.000
 
 **Interpretation:** [Describe one message and the approximate rate.]
 
-The "Hello World" message being outputted by Talker appears to be going at exactly once a second or 1HZ. The third `std dev` value appears to be the standard deviation of the overall statistic, which is ridiculously small. Window seems to be the "window" or number of messages used to calculate said statistics.
+The "Hello World" message being outputted by Talker appears to be going at exactly once a second or 1HZ. The third `std dev` value appears to be the standard deviation of the overall statistic, which is ridiculously small. Window seems to be the "window" or number of messages used to calculate said statistics. The `echo` also appears to output `---`, which upon lookup is because it outputs in YAML format.
 
 ## Part 4: Your status system
 
@@ -231,6 +232,7 @@ NOTE: It seems there is no current practical difference on whether or not the to
 ```bash
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic echo /lab0/status --once
 data: 'System ready: 3257'
+---
 
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic hz /lab0/status
 average rate: 4.001
@@ -309,9 +311,11 @@ halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic list -t
 /lab0/count [std_msgs/msg/Int32]
 /parameter_events [rcl_interfaces/msg/ParameterEvent]
 /rosout [rcl_interfaces/msg/Log]
+
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic echo /lab0/count --once
 data: 221
 ---
+
 halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic hz /lab0/count
 average rate: 1.000
         min: 1.000s max: 1.000s std dev: 0.00000s window: 2
@@ -330,13 +334,17 @@ average rate: 1.000
 average rate: 1.000
         min: 1.000s max: 1.001s std dev: 0.00014s window: 52
 ^Chalifulis@Parcae:~/pinto-cpe491-a0$ 
+
+halifulis@Parcae:~/pinto-cpe491-a0$ ros2 topic echo /lab0/count --once
+data: 2510
+---
 ```
 
 **Interpretation:** [Explain how this supports the node names, /lab0/count topic, Int32 type, publisher/subscriber connection, increasing values, and 1 Hz rate.]
 
 `ros2 node list` confirms the two nodes exist under the requested names, `/count_publisher` and `/count_monitor`. The `ros2 node info` output for each then mirrors the same Publisher/Subscriber split seen in Part 4. The `count_publisher` has `/lab0/count` in its Publishers list with an otherwise empty Subscribers list. The `count_monitor` has the same topic under Subcribers with no Publishers aside from the standard `/parameter_events` and `/rosout` pair. `ros2 topic list -t` corroborates this further by listing `/lab0/count` alongside its type, `std_msgs/msg/Int32`, which also matches what appeared in both nodes' info dumps. Therefore the type is consistent across every place it is referenced, similarly as `lab0/status` was in Part 4.
 
-With regards to the message, 
+With regards to the message, the `ros2 topic echo /lab0/count --once` returns `data: 221`, and later one, `data: 2510`. It is a bare integer with no surrounding quotes, which is noticeably different from Part 4's output that does have it, which appears to be evidence to the expected shape for the `Int32` message type.
 
 NOTE: Needed to run `chmod +x tests/check_assignment.py` to give it permission to run.
 
