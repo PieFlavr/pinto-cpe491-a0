@@ -221,10 +221,10 @@ These checks inspect files and source code; they cannot prove that your live ROS
 
 - [X] The repository is pushed to GitHub.
 - [ ] I ran `gh student submit`, and the latest automated checks pass or I have explained a remaining failure.
-- [ ] All four Python files run directly using `./filename.py`.
+- [X] All four Python files run directly using `./filename.py`.
 - [ ] All three files in `evidence/` are complete.
-- [ ] Output excerpts are short and readable; no screenshots are required.
-- [ ] The status pair runs at approximately 4 Hz and the count pair at approximately 1 Hz.
+- [X] Output excerpts are short and readable; no screenshots are required.
+- [X] The status pair runs at approximately 4 Hz and the count pair at approximately 1 Hz.
 
 ## When to ask for help
 
