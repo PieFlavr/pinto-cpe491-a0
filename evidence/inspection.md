@@ -314,3 +314,5 @@ average rate: 1.000
 ```
 
 **Interpretation:** [Explain how this supports the node names, /lab0/count topic, Int32 type, publisher/subscriber connection, increasing values, and 1 Hz rate.]
+
+NOTE: Needed to run `chmod +x tests/check_assignment.py` to give it permission to run.
